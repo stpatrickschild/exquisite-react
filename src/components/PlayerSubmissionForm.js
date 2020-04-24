@@ -5,25 +5,25 @@ import './PlayerSubmissionForm.css';
 const PlayerSubmissionForm = (props) => {
 
   const [sentence, setSentence] = useState({
-    adjective: '',
-    noun: '',
+    adjective1: '',
+    noun1: '',
     adverb: '',
     verb: '',
     adjective2: '',
     noun2: ''
   });
   
-  const onAdjectiveChange = (event) => {
+  const onAdjective1Change = (event) => {
     setSentence ({
       ...sentence ,
-      adjective: event.target.value
+      adjective1: event.target.value
     })
   };
 
-  const onNounChange = (event) => {
+  const onNoun1Change = (event) => {
     setSentence ({
       ...sentence ,
-      noun: event.target.value
+      noun1: event.target.value
     })
   };
 
@@ -61,12 +61,12 @@ const PlayerSubmissionForm = (props) => {
     // to pass data back up to Game component
     props.updatePoemCallback(sentence);
 
-    if (sentence.adjective !== '' && sentence.noun !== '' && sentence.adverb !== '' && sentence.verb !== '' &&
+    if (sentence.adjective1 !== '' && sentence.noun1 !== '' && sentence.adverb !== '' && sentence.verb !== '' &&
         sentence.adjective2 !== '' && sentence.noun2 !== '') {
 
           setSentence({
-            adjective: '',
-            noun: '',
+            adjective1: '',
+            noun1: '',
             adverb: '',
             verb: '',
             adjective2: '',
@@ -105,16 +105,16 @@ const PlayerSubmissionForm = (props) => {
           The
           <input
             
-            onChange={onAdjectiveChange}
+            onChange={onAdjective1Change}
             value={sentence.adjective}
-            placeholder="adjective"
+            placeholder="adjective1"
             type="text"
           />
 
           <input
-            onChange={onNounChange}
+            onChange={onNoun1Change}
             value={sentence.noun}
-            placeholder="noun"
+            placeholder="noun1"
             type="text"
           />
 

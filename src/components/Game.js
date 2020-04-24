@@ -49,7 +49,7 @@ const Game = () => {
 
       <PlayerSubmissionForm currentPlayer={currentPlayer} updatePoemCallback={updatePoem} />
 
-      <FinalPoem  />
+      <FinalPoem poem={poem} />
 
     </div>
   );
