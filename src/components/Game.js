@@ -5,6 +5,26 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 const Game = () => {
+
+  const [poem, setpoem] = useState([])
+  const[currentPlayer, setCurrentPlayer] = useState(1)
+
+  const updatePoem = (sentence) => {
+    // we have a new poem submitted from the form
+    // save it to a data structure owned by Game
+    // maybe render it on the page?
+    const newPoem = [...poem];
+
+    newPoem.push(sentence);
+
+    // setting the state to the new poem
+    setpoem(newPoem);
+    setCurrentPlayer(currentPlayer + 1);
+    console.log('hahu')
+  }
+
+
+
   const exampleFormat = FIELDS.map((field) => {
     if (field.key) {
       return field.placeholder;
@@ -25,11 +45,11 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission />
+      <RecentSubmission poem={poem}/>
 
-      <PlayerSubmissionForm />
+      <PlayerSubmissionForm currentPlayer={currentPlayer} updatePoemCallback={updatePoem} />
 
-      <FinalPoem />
+      <FinalPoem  />
 
     </div>
   );

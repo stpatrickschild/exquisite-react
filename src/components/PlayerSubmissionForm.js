@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './PlayerSubmissionForm.css';
 
-// The adjective noun adverb verb the adjective noun
+// add the 6 things here. 
 const PlayerSubmissionForm = (props) => {
 
-  const [poem, setPoem] = useState({
+  const [sentence, setSentence] = useState({
     adjective: '',
     noun: '',
     adverb: '',
@@ -14,47 +14,66 @@ const PlayerSubmissionForm = (props) => {
   });
   
   const onAdjectiveChange = (event) => {
-    setPoem({
-      ...poem,
+    setSentence ({
+      ...sentence ,
       adjective: event.target.value
     })
   };
 
   const onNounChange = (event) => {
-    setPoem({
-      ...poem,
+    setSentence ({
+      ...sentence ,
       noun: event.target.value
     })
   };
 
   const onAdverbChange = (event) => {
-    setPoem({
-      ...poem,
+    setSentence({
+      ...sentence ,
       adverb: event.target.value
     })
   };
 
   const onVerbChange = (event) => {
-    setPoem({
-      ...poem,
+    setSentence({
+      ...sentence ,
       verb: event.target.value
     })
   };
 
   const onAdjective2Change = (event) => {
-    setPoem({
-      ...poem,
+    setSentence({
+      ...sentence ,
       adjective2: event.target.value
     })
   };
 
   const onNoun2Change = (event) => {
-    setPoem({
-      ...poem,
+    setSentence({
+      ...sentence ,
       noun2: event.target.value
     })
   };
   
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+
+    // to pass data back up to Game component
+    props.updatePoemCallback(sentence);
+
+    if (sentence.adjective !== '' && sentence.noun !== '' && sentence.adverb !== '' && sentence.verb !== '' &&
+        sentence.adjective2 !== '' && sentence.noun2 !== '') {
+
+          setSentence({
+            adjective: '',
+            noun: '',
+            adverb: '',
+            verb: '',
+            adjective2: '',
+            noun2: ''
+          });
+        };
+  };
   
   
   
@@ -73,55 +92,56 @@ const PlayerSubmissionForm = (props) => {
   
   return (
     <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{  }</h3>
+      <h3>Player Submission Form for Player #{props.currentPlayer}</h3>
 
-      <form className="PlayerSubmissionForm__form" >
+      <form className="PlayerSubmissionForm__form"
+      onSubmit={onFormSubmit} >
 
         <div className="PlayerSubmissionForm__poem-inputs">
 
           {
-            // Put your form inputs here... We've put in one below as an example
+          
           }
           The
           <input
             
             onChange={onAdjectiveChange}
-            value={poem.adjective}
+            value={sentence.adjective}
             placeholder="adjective"
             type="text"
           />
 
           <input
             onChange={onNounChange}
-            value={poem.noun}
+            value={sentence.noun}
             placeholder="noun"
             type="text"
           />
 
           <input
             onChange={onAdverbChange}
-            value={poem.adverb}
+            value={sentence.adverb}
             placeholder="adverb"
             type="text"
           />
 
           <input
             onChange={onVerbChange}
-            value={poem.verb}
+            value={sentence.verb}
             placeholder="verb"
             type="text"
           />  
           the
           <input
             onChange={onAdjective2Change}
-            value={poem.adjective2}
+            value={sentence.adjective2}
             placeholder="adjective2"
             type="text"
           />  
 
         <input
             onChange={onNoun2Change}
-            value={poem.noun2}
+            value={sentence.noun2}
             placeholder="noun2"
             type="text"
           />
@@ -129,7 +149,7 @@ const PlayerSubmissionForm = (props) => {
         </div>
 
         <div className="PlayerSubmissionForm__submit">
-          <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+          <input type="submit" value="Submit Line"  className="PlayerSubmissionForm__submit-btn" />
         </div>
       </form>
     </div>
